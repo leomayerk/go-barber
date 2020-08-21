@@ -29,6 +29,8 @@ class AuthenticateUserService {
     // password - Senha digitada
     const passwordMatched = await compare(password, user.password);
 
+    console.log(passwordMatched);
+
     if (!passwordMatched) {
       throw new Error('Incorrect email/password combination.');
     }
