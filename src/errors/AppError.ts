@@ -7,6 +7,7 @@ class AppError {
     this.message = message;
     this.statusCode = statusCode;
   }
+  //teste
 }
 
 export default AppError;
