@@ -1,18 +1,18 @@
 import AppError from "@shared/errors/AppError";
 import FakeHashProvider from "../providers/HashProvider/fakes/FakeHashProvider";
 import FakeUsersRepository from "../repositories/fakes/FakeUsersRepository";
-import UpdateProfile from "./UpdateProfileService";
+import UpdateProfileService from "./UpdateProfileService";
 import UpdateUserAvatarService from "./UpdateUserAvatarService";
 
 let fakeUsersRepository: FakeUsersRepository;
 let fakeHashProvider: FakeHashProvider;
-let updateProfile: UpdateProfile;
+let updateProfile: UpdateProfileService;
 
 describe('UpdateProfile', () => {
     beforeEach(() => {
         fakeUsersRepository = new FakeUsersRepository();
         fakeHashProvider = new FakeHashProvider();
-        updateProfile = new UpdateProfile(fakeUsersRepository, fakeHashProvider);
+        updateProfile = new UpdateProfileService(fakeUsersRepository, fakeHashProvider);
     });
 
     it('should be able to update the profile', async () => {
@@ -103,6 +103,16 @@ describe('UpdateProfile', () => {
                 email: 'johntre@email.com',
                 old_password: 'wrong-old-password',
                 password: '123123'
+            })
+        ).rejects.toBeInstanceOf(AppError);
+    });
+
+    it('should not be able to update the profile from non-existing user', async () => {
+        expect(
+            updateProfile.execute({
+                user_id: 'non-existing-user-id',
+                name: 'Test',
+                email: 'test@email.com',
             })
         ).rejects.toBeInstanceOf(AppError);
     });

@@ -1,8 +1,5 @@
-import path from 'path';
-import fs from 'fs';
 import { injectable, inject } from 'tsyringe';
 
-import uploadConfig from '@config/upload';
 import User from '../infra/typeorm/entities/User';
 import IUsersRepository from '../repositories/IUsersRepository';
 import AppError from '@shared/errors/AppError';
@@ -17,7 +14,7 @@ interface IRequest {
 }
 
 @injectable()
-class UpdateProfile {
+class UpdateProfileService {
   constructor(
     @inject('UsersRepository')
     private usersRepository: IUsersRepository,
@@ -60,4 +57,4 @@ class UpdateProfile {
   }
 }
 
-export default UpdateProfile;
+export default UpdateProfileService;
