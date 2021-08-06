@@ -38,8 +38,6 @@ class AuthenticateUserService {
     // password - Senha digitada
     const passwordMatched = await this.hashProvider.compareHash(password, user.password);
 
-    console.log(passwordMatched);
-
     if (!passwordMatched) {
       throw new AppError('Incorrect email/password combination.', 401);
     }
