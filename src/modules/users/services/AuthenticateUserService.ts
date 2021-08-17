@@ -49,7 +49,11 @@ class AuthenticateUserService {
       subject: user.id,
       expiresIn,
     });
-    return { user, token };
+
+    return {
+      user,
+      token,
+    };
   }
 }
 
