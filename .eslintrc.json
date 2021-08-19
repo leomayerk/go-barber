@@ -24,6 +24,8 @@
     "prettier"
   ],
   "rules": {
+    "linebreak-style": 0,
+    "spaced-comment": ["error", "never"],
     "no-underscore-dangle": "off",
     "prettier/prettier": "error",
     "class-methods-use-this": "off",
